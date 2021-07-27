@@ -1,6 +1,9 @@
-# MyApp
+# Envision technical test
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.3.
+
+## Running the app
+Use `npm install` right after the first pull to load modules.
 
 ## Development server
 
