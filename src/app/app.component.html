@@ -1,0 +1,62 @@
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  <div class="spacer"></div>
+  <i class="material-icons" style="margin-right: 10px;">movie_filter</i>
+  <span>Peliculas</span>
+  <div class="spacer"></div>
+
+</div>
+
+<div *ngIf='movies.length !== 0; else elseBlock' class="content" role="main" >
+  <mat-accordion style="width: 100%;">
+    <div *ngFor="let movie of movies; index as i">
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{i+1}}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{movie.title}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="internal-panel">
+          <div style="display: flex;flex-direction: column; justify-content: center;">
+            <div class="internal-p1" style="display: flex;flex-direction: row; justify-content: space-between;" >
+              <p >Director: </p><p>{{movie.director}}</p>
+            </div>
+            <div class="internal-p2" style="display: flex;flex-direction: row; justify-content: space-between;" >
+              <p >Rating IMDB: </p><p>{{movie.rating}}</p>
+            </div>
+            <div class="internal-p1" style="display: flex;flex-direction: row; justify-content: space-between;" >
+              <p >Metascore: </p><p>{{movie.metascore}}</p>
+            </div>
+            <div class="internal-p2" style="display: flex;flex-direction: row; justify-content: space-between;" >
+              <p >Año: </p><p>{{movie.year}}</p>
+            </div>
+          </div> 
+          <!--*ngIf="movie.img"-->
+
+          <img *ngIf="movie.img" class="expanding-panel-image"  src={{movie.img}}>
+        </div>
+      </mat-expansion-panel>
+    </div>
+  </mat-accordion>
+</div>
+<ng-template #elseBlock>
+  <div class="content" role="main">
+    <div *ngIf='!clicked; else elseBlockTwo'>
+      <h1 style="color: white; text-align: center; margin-top: 50px; text-shadow: 2px 2px 0 #724ab8;">
+        En esta página puedes obtener las 10 mejores películas segun IMBD!
+      </h1>
+      <h1 style="color: white; text-align: center; text-shadow: 2px 2px 0 #724ab8;">
+        Haz click en el boton para comenzar
+      </h1>
+      <div style="display: flex; flex-direction: row; justify-content: center;  margin-top: 200px; height: 60px;">
+        <button mat-raised-button color="primary" (click)="buttonClick()">Obtener</button>
+      </div>
+    </div>
+    <ng-template #elseBlockTwo >
+      <mat-spinner style="margin-top: 300px;"></mat-spinner>
+    </ng-template>
+  </div>
+</ng-template>
